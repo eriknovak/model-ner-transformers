@@ -1,9 +1,9 @@
+model_name: roberta-base
 training:
   seed: 0
-  epochs: 1
-  batch_size: 16
+  epochs: 3
+  batch_size: 4
   epsilon: 0.000001
   learning_rate: 0.000001
   weight_decay: 0.01
-  grad_update_step: 1
-  
+  grad_update_step: 4

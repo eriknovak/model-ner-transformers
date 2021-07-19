@@ -1,5 +1,6 @@
-# 📜 Deneir Script
-The template for continuous and integrated research
+# 📜 Named Entity Recognition
+This repository contains the code to build a named entity recognition model
+using 🤗 huggingface, pytorch, pytorch lightning.
 
 ## ☑️ Requirements
 Before starting the project make sure these requirements are available:
@@ -9,7 +10,7 @@ Before starting the project make sure these requirements are available:
 
 ## 🛠️ Setup
 
-**NOTE:** For each new project it is advisable to change the environment name 
+**NOTE:** For each new project it is advisable to change the environment name
 and to make sure that the required modules are in the `environment.yml` file.
 
 ### Install the conda environment
@@ -25,7 +26,7 @@ conda env create -f environment.yml
 To activate the newly set environment run:
 
 ```bash
-conda activate deneir-script
+conda activate ner
 ```
 
 ### Install PyTorch
@@ -51,7 +52,7 @@ If one will use Jupyter Notebook or Lab the jupyter extension configurator
 needs to be installed as well.
 
 ```bash
-conda install -n deneir-script -c conda-forge jupyter_nbextensions_configurator
+conda install -n ner -c conda-forge jupyter_nbextensions_configurator
 ```
 
 
