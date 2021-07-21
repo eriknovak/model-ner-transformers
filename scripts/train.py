@@ -6,12 +6,8 @@ import torch
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 # =====================================
-# Import Inputs and Training Parameters
+# Import Training Parameters
 # =====================================
-
-# data_folder = sys.argv[1]
-# model_file = sys.argv[2]
-# LOSS_DIR = sys.argv[3]
 
 params = yaml.safe_load(open("params.yaml"))
 
@@ -33,7 +29,7 @@ label2id = {k: labels.str2int(k) for k in labels.names}
 # Define the Model
 # =====================================
 
-from library.NER import NERModel
+from library.NERModel import NERModel
 
 # get the model name
 model_name = params["model_name"]
@@ -91,9 +87,9 @@ dataset.set_format(type="torch", columns=["input_ids", "attention_mask", "labels
 # get parameters
 # ===========================
 
-batch_size = training["batch_size"]
 epochs = training["epochs"]
-grad_update_step = training["grad_update_step"]
+grad_step = training["grad_step"]
+batch_size = training["batch_size"]
 
 # use a third of the workers for each data loader
 num_workers = math.floor(os.cpu_count() / 3)
@@ -113,20 +109,30 @@ data_val = torch.utils.data.DataLoader(
 # Execute the Training Process
 # =====================================
 
-# initialize the logger
-from pytorch_lightning import loggers as pl_loggers
 
-tb_logger = pl_loggers.TensorBoardLogger(save_dir="logs/", name=model_name)
+import pytorch_lightning as pl
+from pytorch_lightning.loggers import TestTubeLogger
+from pytorch_lightning.callbacks import ModelCheckpoint
+
+# initialize the logger
+tb_logger = TestTubeLogger(save_dir="logs/", name=model_name,)
+
+# create a checkpoint callback
+checkpoint_callback = ModelCheckpoint(
+    monitor="val_loss",
+    filename=model_name + "_epoch{epoch:02d}_{val_loss:.2f}",
+    auto_insert_metric_name=False,
+    save_top_k=3,
+    mode="min",
+)
 
 # initialize the trainer
-import pytorch_lightning as pl
-
 trainer = pl.Trainer(
     gpus=1,  # run on one gpu
     logger=tb_logger,  # format logs for tensorboard
     max_epochs=epochs,  # maximum number of epochs
-    accumulate_grad_batches=grad_update_step,  # when to trigger optimizer step
-    profiler="simple",  # adds a profile of the model
+    accumulate_grad_batches=grad_step,  # when to trigger optimizer step
+    callbacks=[checkpoint_callback],
 )
 # start the training process
 trainer.fit(model, data_train, data_val)
