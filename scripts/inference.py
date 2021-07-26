@@ -27,12 +27,12 @@ model.eval()
 
 # prepare text strings
 examples = [
-    "Janez Novak is a researcher working at the Jožef Stefan Institute located in Ljubljana, Slovenia.",
+    "Janez Novak is a researcher working at the Jozef Stefan Institute located in Ljubljana, Slovenia.",
     "Janez Novak je raziskovalec, ki dela na Institutu Jožef Stefan, ki se nahaja v Ljubljani, Sloveniji.",
-    "Janez Novak ist ein Suchender am Jožef Stefan Institut in Ljubljana, Slowenien.",
-    "Janez Novak ni mtafuta kazi anayefanya kazi katika Taasisi ya Jožef Stefan iliyoko Ljubljana, Slovenia.",
-    "Janez Novak je pretraživač koji radi na Institutu Jožef Stefan smještenom u Ljubljani, Slovenija.",
-    "Janez Novak jest poszukiwaczem pracującym w Instytucie Jožefa Stefana w Lublanie w Słowenii.",
+    "Janez Novak ist ein Suchender am Jozef Stefan Institut in Ljubljana, Slowenien.",
+    "Janez Novak ni mtafuta kazi anayefanya kazi katika Taasisi ya Jozef Stefan iliyoko Ljubljana, Slovenia.",
+    "Janez Novak je pretraživač koji radi na Institutu Jozef Stefan smještenom u Ljubljani, Slovenija.",
+    "Janez Novak jest poszukiwaczem pracującym w Instytucie Jozefa Stefana w Lublanie w Słowenii.",
 ]
 
 for example in examples:

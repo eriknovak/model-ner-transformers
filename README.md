@@ -73,15 +73,15 @@ The **XLM-RoBERTa** is a cross-lingual language model proposed in the following 
 ```bibtex
 @inproceedings{conneau-etal-2020-unsupervised,
     title = "Unsupervised Cross-lingual Representation Learning at Scale",
-    author = "Conneau, Alexis and 
-        Khandelwal, Kartikay and 
-        Goyal, Naman and 
-        Chaudhary, Vishrav and 
-        Wenzek, Guillaume and 
-        Guzm{\'a}n, Francisco and 
-        Grave, Edouard and 
-        Ott, Myle and 
-        Zettlemoyer, Luke and 
+    author = "Conneau, Alexis and
+        Khandelwal, Kartikay and
+        Goyal, Naman and
+        Chaudhary, Vishrav and
+        Wenzek, Guillaume and
+        Guzm{\'a}n, Francisco and
+        Grave, Edouard and
+        Ott, Myle and
+        Zettlemoyer, Luke and
         Stoyanov, Veselin",
     booktitle = "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics",
     month = jul,
@@ -147,12 +147,12 @@ different languages as shown in Table 3.
 
 | Language | Sentence                                                                                                  |
 | -------- | --------------------------------------------------------------------------------------------------------- |
-| English  | "Janez Novak is a researcher working at the Jožef Stefan Institute located in Ljubljana, Slovenia."       |
+| English  | "Janez Novak is a researcher working at the Jozef Stefan Institute located in Ljubljana, Slovenia."       |
 | Slovene  | "Janez Novak je raziskovalec, ki dela na Institutu Jožef Stefan, ki se nahaja v Ljubljani, Sloveniji."    |
-| German   | "Janez Novak ist ein Suchender am Jožef Stefan Institut in Ljubljana, Slowenien."                         |
-| Swahili  | "Janez Novak ni mtafuta kazi anayefanya kazi katika Taasisi ya Jožef Stefan iliyoko Ljubljana, Slovenia." |
-| Croatian | "Janez Novak je pretraživač koji radi na Institutu Jožef Stefan smještenom u Ljubljani, Slovenija."       |
-| Polish   | "Janez Novak jest poszukiwaczem pracującym w Instytucie Jožefa Stefana w Lublanie w Słowenii."            |
+| German   | "Janez Novak ist ein Suchender am Jozef Stefan Institut in Ljubljana, Slowenien."                         |
+| Swahili  | "Janez Novak ni mtafuta kazi anayefanya kazi katika Taasisi ya Jozef Stefan iliyoko Ljubljana, Slovenia." |
+| Croatian | "Janez Novak je pretraživač koji radi na Institutu Jozef Stefan smještenom u Ljubljani, Slovenija."       |
+| Polish   | "Janez Novak jest poszukiwaczem pracującym w Instytucie Jozefa Stefana w Lublanie w Słowenii."            |
 
 _Table 3. Sentence examples in different languages. All of the sentences are translations of the English one._
 
@@ -164,14 +164,14 @@ python scripts/inference.py ./models/xlm-roberta-base-conll2003.ckpt
 
 The above script contains will return the labels presented in Table 4.
 
-| Language | Named Entity Labels                                                                                               |
-| -------- | ----------------------------------------------------------------------------------------------------------------- |
-| English  | ("Janez Novak", "PER"), ("Jožef Stefan Institute", "ORG"), ("Ljubljana", "LOC"), ("Slovenia", "LOC")              |
-| Slovene  | ("Janez Novak", "PER"), ("Institutu Jožef Stefan", "ORG"), ("Ljubljani", "LOC"), ("Sloveniji", "LOC")             |
-| German   | ("Janez Novak", "PER"), ("Jo", "LOC"), ("žef Stefan Institut", "ORG"), ("Ljubljana", "LOC"), ("Slowenien", "LOC") |
-| Swahili  | ("Janez Novak", "PER"), ("Taasisi", "ORG"), ("Jožef Stefan", "ORG"), ("Ljubljana", "LOC"), ("Slovenia", "LOC")    |
-| Croatian | ("Janez Novak", "PER"), ("Institutu Jožef Stefan", "ORG"), ("Ljubljani", "LOC"), ("Slovenija", "LOC")             |
-| Polish   | ("Janez Novak", "PER"), ("Instytu", "ORG"), ("Jožefa Stefana", "ORG"), ("Lublanie", "LOC"), ("Słowenii", "LOC")   |
+| Language | Named Entity Labels                                                                                             |
+| -------- | --------------------------------------------------------------------------------------------------------------- |
+| English  | ("Janez Novak", "PER"), ("Jozef Stefan Institute", "ORG"), ("Ljubljana", "LOC"), ("Slovenia", "LOC")            |
+| Slovene  | ("Janez Novak", "PER"), ("Institutu Jožef Stefan", "ORG"), ("Ljubljani", "LOC"), ("Sloveniji", "LOC")           |
+| German   | ("Janez Novak", "PER"), ("Jozef Stefan Institut", "ORG"), ("Ljubljana", "LOC"), ("Slowenien", "LOC")            |
+| Swahili  | ("Janez Novak", "PER"), ("Taasisi", "ORG"), ("Jozef Stefan", "ORG"), ("Ljubljana", "LOC"), ("Slovenia", "LOC")  |
+| Croatian | ("Janez Novak", "PER"), ("Institutu Jozef Stefan", "ORG"), ("Ljubljani", "LOC"), ("Slovenija", "LOC")           |
+| Polish   | ("Janez Novak", "PER"), ("Instytu", "ORG"), ("Jozefa Stefana", "ORG"), ("Lublanie", "LOC"), ("Słowenii", "LOC") |
 
 _Table 4. The named entity labels for the same sentence in different languages provided by the trained model._
 
