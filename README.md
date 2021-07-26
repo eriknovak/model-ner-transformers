@@ -72,24 +72,24 @@ The **XLM-RoBERTa** is a cross-lingual language model proposed in the following 
 
 ```bibtex
 @inproceedings{conneau-etal-2020-unsupervised,
-    title = "Unsupervised Cross-lingual Representation Learning at Scale",
-    author = "Conneau, Alexis and 
-        Khandelwal, Kartikay and 
-        Goyal, Naman and 
-        Chaudhary, Vishrav and 
-        Wenzek, Guillaume and 
-        Guzm{\'a}n, Francisco and 
-        Grave, Edouard and 
-        Ott, Myle and 
-        Zettlemoyer, Luke and 
-        Stoyanov, Veselin",
-    booktitle = "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics",
-    month = jul,
-    year = "2020",
-    publisher = "Association for Computational Linguistics",
-    url = "https://aclanthology.org/2020.acl-main.747",
-    doi = "10.18653/v1/2020.acl-main.747",
-    pages = "8440--8451",
+  title = "Unsupervised Cross-lingual Representation Learning at Scale",
+  author = "Conneau, Alexis and 
+    Khandelwal, Kartikay and 
+    Goyal, Naman and 
+    Chaudhary, Vishrav and 
+    Wenzek, Guillaume and 
+    Guzm{\'a}n, Francisco and 
+    Grave, Edouard and 
+    Ott, Myle and 
+    Zettlemoyer, Luke and 
+    Stoyanov, Veselin",
+  booktitle = "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics",
+  month = jul,
+  year = "2020",
+  publisher = "Association for Computational Linguistics",
+  url = "https://aclanthology.org/2020.acl-main.747",
+  doi = "10.18653/v1/2020.acl-main.747",
+  pages = "8440--8451",
 }
 ```
 
@@ -99,12 +99,12 @@ recognition. The paper introducing the dataset is:
 
 ```bibtex
 @inproceedings{tjong-kim-sang-de-meulder-2003-introduction,
-    title = "Introduction to the {C}o{NLL}-2003 Shared Task: Language-Independent Named Entity Recognition",
-    author = "Tjong Kim Sang, Erik F. and De Meulder, Fien",
-    booktitle = "Proceedings of the Seventh Conference on Natural Language Learning at {HLT}-{NAACL} 2003",
-    year = "2003",
-    url = "https://www.aclweb.org/anthology/W03-0419",
-    pages = "142--147",
+  title = "Introduction to the {C}o{NLL}-2003 Shared Task: Language-Independent Named Entity Recognition",
+  author = "Tjong Kim Sang, Erik F. and De Meulder, Fien",
+  booktitle = "Proceedings of the Seventh Conference on Natural Language Learning at {HLT}-{NAACL} 2003",
+  year = "2003",
+  url = "https://www.aclweb.org/anthology/W03-0419",
+  pages = "142--147",
 }
 ```
 
