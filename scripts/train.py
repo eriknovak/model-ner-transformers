@@ -95,7 +95,7 @@ def add_encodings(example):
         for token_idx in range(1, len(tokens)):
             token = tokens[token_idx]
             condition = (
-                re.match("##|-|\d|'", token)
+                re.match(r"##|-|\d|'", token)
                 or prev_token == "'"
                 or prev_token == "-"
                 or next_token == "'"
