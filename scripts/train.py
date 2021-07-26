@@ -178,5 +178,9 @@ trainer = pl.Trainer(
 # start the training process
 trainer.fit(model, data_train, data_val)
 
+# save the best performing checkpoint
+trainer.save_checkpoint(f"models/{model_name}-conll2003.ckpt")
+
 # evaluate the best model on the test subset
 trainer.test(test_dataloaders=data_test)
+
