@@ -161,7 +161,7 @@ checkpoint_callback = ModelCheckpoint(
     monitor="val_loss",
     dirpath=f"models/{model_name}",
     filename=f"learning_rate={lr}-weight_decay={wd}" + "-{epoch:02d}-{val_loss:.2f}",
-    save_top_k=1,
+    save_top_k=3,
     mode="min",
 )
 
