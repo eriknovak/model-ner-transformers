@@ -49,6 +49,8 @@ conda deactivate
 
 **NOTE:** Training a single model requires approximate 10 GB of GPU space.
 
+### Parameters
+
 To run the experiments one can manually change `params.yaml` file with different
 parameters (the provided parameters are good default values). The default parameters
 are presented in Table 1.
@@ -70,15 +72,24 @@ The **XLM-RoBERTa** is a cross-lingual language model proposed in the following 
 
 ```bibtex
 @inproceedings{conneau-etal-2020-unsupervised,
-    title = "Unsupervised Cross-lingual Representation Learning at Scale"`,
-    author = "Conneau, Alexis and Khandelwal, Kartikay and Goyal, Naman and Chaudhary, Vishrav and Wenzek, Guillaume and Guzm{\'a}n, Francisco and Grave, Edouard and Ott, Myle and Zettlemoyer, Luke and Stoyanov, Veselin"`,
-    booktitle = "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics"`,
+    title = "Unsupervised Cross-lingual Representation Learning at Scale",
+    author = "Conneau, Alexis and 
+        Khandelwal, Kartikay and 
+        Goyal, Naman and 
+        Chaudhary, Vishrav and 
+        Wenzek, Guillaume and 
+        Guzm{\'a}n, Francisco and 
+        Grave, Edouard and 
+        Ott, Myle and 
+        Zettlemoyer, Luke and 
+        Stoyanov, Veselin",
+    booktitle = "Proceedings of the 58th Annual Meeting of the Association for Computational Linguistics",
     month = jul,
-    year = "2020"`,
-    publisher = "Association for Computational Linguistics"`,
-    url = "https://aclanthology.org/2020.acl-main.747"`,
-    doi = "10.18653/v1/2020.acl-main.747"`,
-    pages = "8440--8451"`,
+    year = "2020",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2020.acl-main.747",
+    doi = "10.18653/v1/2020.acl-main.747",
+    pages = "8440--8451",
 }
 ```
 
@@ -88,17 +99,19 @@ recognition. The paper introducing the dataset is:
 
 ```bibtex
 @inproceedings{tjong-kim-sang-de-meulder-2003-introduction,
-    title = "Introduction to the {C}o{NLL}-2003 Shared Task: Language-Independent Named Entity Recognition"`,
-    author = "Tjong Kim Sang, Erik F. and De Meulder, Fien"`,
-    booktitle = "Proceedings of the Seventh Conference on Natural Language Learning at {HLT}-{NAACL} 2003"`,
-    year = "2003"`,
-    url = "https://www.aclweb.org/anthology/W03-0419"`,
-    pages = "142--147"`,
+    title = "Introduction to the {C}o{NLL}-2003 Shared Task: Language-Independent Named Entity Recognition",
+    author = "Tjong Kim Sang, Erik F. and De Meulder, Fien",
+    booktitle = "Proceedings of the Seventh Conference on Natural Language Learning at {HLT}-{NAACL} 2003",
+    year = "2003",
+    url = "https://www.aclweb.org/anthology/W03-0419",
+    pages = "142--147",
 }
 ```
 
 **NOTE:** To train a NER model using a different dataset, one must
 first check its structure and change the `./scripts/train.py` file accordingly.
+
+### Training the Model
 
 Then simply run the following command to train the model:
 
@@ -110,7 +123,7 @@ After about 1 hour of training the above command will build a model and will
 be located in the `/models` folder. The default model path is:
 
 ```bash
-./models/xlm-roberta-base/learning_rate=1e-05-weight_decay=0.01-epoch=04-val_loss=0.05.ckpt
+./models/xlm-roberta-base-conll2003.ckpt
 ```
 
 ## 📋 Experiment Results
@@ -119,9 +132,9 @@ After the model is trained it is automatically evaluated with the
 predefined `validation` and `test` set. The results of the validation and test
 scores are found in Table 2.
 
-| Model            |  Accuracy   |  Precision  |   Recall    |
-| ---------------- | :---------: | :---------: | :---------: |
-| xlm-roberta-base | 93.8 / 90.5 | 93.5 / 86.3 | 93.8 / 90.3 |
+| Model                      |  Accuracy   |  Precision  |   Recall    |
+| -------------------------- | :---------: | :---------: | :---------: |
+| xlm-roberta-base-conll2003 | 93.8 / 90.5 | 93.5 / 86.3 | 93.8 / 90.3 |
 
 _Table 2. Named entity recognition performance of the models. The scores
 represent the validation/test scores._
@@ -146,7 +159,7 @@ _Table 3. Sentence examples in different languages. All of the sentences are tra
 To run it with the trained model run:
 
 ```bash
-python scripts/inference.py ./models/xlm-roberta-base/learning_rate=1e-05-weight_decay=0.01-epoch=04-val_loss=0.05.ckpt
+python scripts/inference.py ./models/xlm-roberta-base-conll2003.ckpt
 ```
 
 The above script contains will return the labels presented in Table 4.
