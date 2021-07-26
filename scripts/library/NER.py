@@ -1,18 +1,21 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from transformers import AutoModelForTokenClassification, AutoTokenizer
+from transformers import AutoModelForTokenClassification, AutoTokenizer, logging
 import pytorch_lightning as pl
 import torchmetrics
 
 # import format named entities
-from library.format import format_named_entities
+from library.format import format_named_entities, aggregate_entities
 
 # python types
 from typing import Dict
 
+# set the verbosity warning
+logging.set_verbosity_error()
 
-class NERModel(pl.LightningModule):
+
+class NER(pl.LightningModule):
     def __init__(
         self,
         model_name: str,
@@ -24,7 +27,7 @@ class NERModel(pl.LightningModule):
         super().__init__()
 
         # save the model hyperparameters
-        self.save_hyperparameters("model_name", "lr", "wd", "eps")
+        self.save_hyperparameters("model_name", "lr", "wd", "eps", "label2id")
 
         # set the placeholder for the entities
         num_classes = len(label2id.keys())
@@ -52,19 +55,36 @@ class NERModel(pl.LightningModule):
             num_classes=num_classes, average="macro"
         )
 
-    def forward(self, text: str):
+    def forward(self, text: str, aggregated_entities=True):
+        """Extracts the named entities from the text
+
+        Args:
+            text (str) - The text from which we want to extract the named entities.
+            aggregated_entities (bool) - If True, returns the named entities aggregated
+                by their types. Otherwise, returns the whole list of tokens and their types.
+                (Default: True).
+
+        Returns:
+            entities (List[Tuple[str, str]]) - The entities labels for the text tokens.
+
+        """
+
         # encode and calculate the label logits
         encodings = self.tokenizer(text, truncation=True, return_tensors="pt")
         outputs = self.model(**encodings)
 
         # get the tokens and labels from the outputs
         tokens = self.tokenizer.convert_ids_to_tokens(encodings["input_ids"][0])
-        labels = outputs["logits"].argmax(dim=2)[0]
+        labels = outputs["logits"].argmax(dim=2)[0].tolist()
 
         # calculate the entities
         entities = format_named_entities(self.model, tokens[1:-1], labels[1:-1])
 
-        return labels, tokens, entities
+        if aggregated_entities:
+            # aggregate the entities
+            entities = aggregate_entities(entities)
+
+        return entities
 
     def on_training_start(self):
         self.logger.log_hyperparams(self.hparams)
@@ -105,12 +125,14 @@ class NERModel(pl.LightningModule):
         for idx in range(true.shape[0]):
             # get the values that are actually corresponding to the values
             last_idx = attention_mask[idx].sum()
-            curr_pred = pred[idx][:last_idx]
-            curr_true = true[idx][:last_idx]
+            curr_pred = pred[idx][1:last_idx]
+            curr_true = true[idx][1:last_idx]
             # measure the performance
             self.prec(curr_pred, curr_true)
             self.rec(curr_pred, curr_true)
             self.acc(curr_pred, curr_true)
+
+        # return the loss value
         return loss
 
     def _shared_log(self, state, step_outputs):

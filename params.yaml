@@ -1,7 +1,7 @@
 model_name: xlm-roberta-base
 training:
-  seed: 0
-  epochs: 8
+  seed: 1
+  epochs: 5
   batch_size: 8
   grad_step: 4
   epsilon: 0.00001

@@ -18,10 +18,10 @@ def format_named_entities(
                 `labels = torch.argmax(scores, dim=2)[0]` where `scores` are
                 the label scores provided by `self.model`.
         Returns:
-            ner (List[Tuple[str, str]]): The list of all Named Entity pairs.
+            ner (List[Tuple[str, str]]): The list of all named entity pairs.
         """
 
-    regex_pattern = "_|Ġ|#"
+    regex_pattern = "▁|Ġ|##"
 
     def has_special_token(token: str) -> bool:
         return re.match(regex_pattern, token)
@@ -63,3 +63,44 @@ def format_named_entities(
 
     # return the list of named entities
     return entities
+
+
+def aggregate_entities(labels):
+    """Merges and returns the entities that are not 'O'
+
+    Args:
+        labels (List[Tuple[str, str]]) - The list of (token, label) tuples.
+
+    Returns:
+        entities (List[str]) - The list of entities and types.
+
+    """
+
+    entities = []
+    pt = None
+    pl = None
+    # iterate through the labels
+    for (token, label) in labels:
+        cl = label.split("-")[1] if label != "O" else label
+        if cl != pl and pt != None:
+            # add the entities
+            entities.append((pt, pl))
+            pt = None
+            pl = None
+
+        if cl == "O":
+            # skip the other values
+            continue
+
+        if cl == pl:
+            # add the token to the previous token
+            pt += f" {token}"
+        else:
+            pt = token
+            pl = cl
+
+    if pt != None and pl != None:
+        entities.append((pt, pl))
+    # return the entities
+    return entities
+
