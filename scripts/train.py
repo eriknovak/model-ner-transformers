@@ -133,7 +133,7 @@ batch_size = training["batch_size"]
 # use a third of the workers for each data loader
 num_workers = math.floor(os.cpu_count() / 3)
 
-# prepare the train and validation data
+# prepare the train, validation and test sets
 data_train = torch.utils.data.DataLoader(
     dataset["train"], batch_size=batch_size, num_workers=num_workers, pin_memory=True,
 )
@@ -158,7 +158,7 @@ from pytorch_lightning.callbacks import ModelCheckpoint
 # initialize the logger
 tb_logger = TestTubeLogger(save_dir="logs/", name=model_name,)
 
-# create a checkpoint callback
+# create a model checkpoint callback
 checkpoint_callback = ModelCheckpoint(
     monitor="val_loss",
     dirpath=f"models/{model_name}",
@@ -173,9 +173,9 @@ trainer = pl.Trainer(
     logger=tb_logger,  # format logs for tensorboard
     max_epochs=epochs,  # maximum number of epochs
     accumulate_grad_batches=grad_step,  # when to trigger optimizer step
-    callbacks=[checkpoint_callback],
-    log_every_n_steps=8,
-    deterministic=True,
+    callbacks=[checkpoint_callback],  # set callbacks for creating model checkpoints
+    log_every_n_steps=8,  # the logging frequency
+    deterministic=True,  # True to have a deterministic (reporoducible) experiment
 )
 # start the training process
 trainer.fit(model, data_train, data_val)
