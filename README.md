@@ -55,16 +55,16 @@ To run the experiments one can manually change `params.yaml` file with different
 parameters (the provided parameters are good default values). The default parameters
 are presented in Table 1.
 
-| Param                  | Default Value    | Description                                                           |
-| ---------------------- | ---------------- | --------------------------------------------------------------------- |
-| model_name             | xlm-roberta-base | The 🤗 Transformers pretrained model                                  |
-| training.seed          | 1                | The seed used to create the experiments deterministics                |
-| training.epochs        | 5                | The number of epochs the model is trained                             |
-| training.batch_size    | 8                | The number of examples in a batch                                     |
-| training.grad_step     | 4                | The number of gradients accumulated before updating the model weights |
-| training.epsilon       | 0.00001          | The epsilon used in the optimizer                                     |
-| training.learning_rate | 0.00001          | The starting learning rate used in the optimizer                      |
-| training.weight_decay  | 0.01             | The weight decay used in the optimizer                                |
+| Param                  | Default Value    | Description                                                                       |
+| ---------------------- | ---------------- | --------------------------------------------------------------------------------- |
+| model_name             | xlm-roberta-base | The 🤗 Transformers pretrained model. Supports `roberta` and `xlm-roberta` models |
+| training.seed          | 1                | The seed used to create the experiments deterministics                            |
+| training.epochs        | 5                | The number of epochs the model is trained                                         |
+| training.batch_size    | 8                | The number of examples in a batch                                                 |
+| training.grad_step     | 4                | The number of gradients accumulated before updating the model weights             |
+| training.epsilon       | 0.00001          | The epsilon used in the optimizer                                                 |
+| training.learning_rate | 0.00001          | The starting learning rate used in the optimizer                                  |
+| training.weight_decay  | 0.01             | The weight decay used in the optimizer                                            |
 
 _Table 1. The default training parameters._
 
@@ -120,7 +120,7 @@ python scripts/train.py
 ```
 
 After about 1 hour of training the above command will build a model and will
-be located in the `/models` folder. The default model path is:
+be located in the `/models` folder. The default format of the model path is:
 
 ```bash
 ./models/xlm-roberta-base-conll2003.ckpt
@@ -130,7 +130,7 @@ be located in the `/models` folder. The default model path is:
 
 After the model is trained it is automatically evaluated with the
 predefined `validation` and `test` set. The results of the validation and test
-scores are found in Table 2.
+scores of the trained models are found in Table 2.
 
 | Model                      | Cross-Lingual |  Accuracy   |  Precision  |   Recall    |
 | -------------------------- | :-----------: | :---------: | :---------: | :---------: |
@@ -143,9 +143,9 @@ represent the validation/test scores._
 
 ## 🔎 Extracting Named Entities
 
-Once the model is trained one can use the model described as in the
-[./scripts/inference.py][inference] file. It also contains sentence examples in
-different languages as shown in Table 3.
+Once the `xlm-roberta-base-conll2003` is trained one can use the model described
+as in the [./scripts/inference.py][inference] file. It contains sentence examples
+in different languages as shown in Table 3.
 
 | Language | Sentence                                                                                                  |
 | -------- | --------------------------------------------------------------------------------------------------------- |
@@ -177,10 +177,10 @@ The above script contains will return the labels presented in Table 4.
 
 _Table 4. The named entity labels for the same sentence in different languages provided by the trained model._
 
-## 💽 Model
+## 💽 Models
 
-To get the trained `xlm-roberta-base-conll2003` model with the above performance
-results contact the repository maintainer.
+To get access to the models with the above performance results contact the
+repository maintainer.
 
 # 🏬 Acknowledgments
 
