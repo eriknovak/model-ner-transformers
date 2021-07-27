@@ -68,7 +68,7 @@ are presented in Table 1.
 
 _Table 1. The default training parameters._
 
-The **XLM-RoBERTa** is a cross-lingual language model proposed in the following paper:
+The [XLM-RoBERTa][xlm-roberta] is a cross-lingual language model proposed in the following paper:
 
 ```bibtex
 @inproceedings{conneau-etal-2020-unsupervised,
@@ -193,6 +193,7 @@ The work is supported by the following EU Horizon 2020 projects:
 [git]: https://git-scm.com/
 [conda]: https://docs.conda.io/en/latest/
 [pytorch]: https://pytorch.org/
+[xlm-roberta]: https://huggingface.co/transformers/model_doc/xlmroberta.html
 [conll2003]: https://huggingface.co/datasets/conll2003
 [inference]: ./scripts/inference.py
 [ailab]: http://ailab.ijs.si/
