@@ -158,13 +158,13 @@ in different languages as shown in Table 3.
 
 _Table 3. Sentence examples in different languages. All of the sentences are translations of the English one._
 
-To run it with the trained model run:
+To run it with the trained model execute:
 
 ```bash
 python scripts/inference.py ./models/xlm-roberta-base-conll2003.ckpt
 ```
 
-The above script contains will return the labels presented in Table 4.
+The above script will return the labels presented in Table 4.
 
 | Language | Named Entity Labels                                                                                             |
 | -------- | --------------------------------------------------------------------------------------------------------------- |
