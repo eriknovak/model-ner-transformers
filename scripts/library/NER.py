@@ -124,7 +124,7 @@ class NER(pl.LightningModule):
         # iterate through the labels
         for idx in range(true.shape[0]):
             # get the values that are actually corresponding to the values
-            last_idx = attention_mask[idx].sum()
+            last_idx = attention_mask[idx].sum() - 1
             curr_pred = pred[idx][1:last_idx]
             curr_true = true[idx][1:last_idx]
             # measure the performance

@@ -132,9 +132,11 @@ After the model is trained it is automatically evaluated with the
 predefined `validation` and `test` set. The results of the validation and test
 scores are found in Table 2.
 
-| Model                      |  Accuracy   |  Precision  |   Recall    |
-| -------------------------- | :---------: | :---------: | :---------: |
-| xlm-roberta-base-conll2003 | 93.8 / 90.5 | 93.5 / 86.3 | 93.8 / 90.3 |
+| Model                      | Cross-Lingual |  Accuracy   |  Precision  |   Recall    |
+| -------------------------- | :-----------: | :---------: | :---------: | :---------: |
+| xlm-roberta-base-conll2003 |     True      | 93.8 / 90.5 | 93.5 / 86.3 | 93.8 / 90.3 |
+| roberta-base-conll2003     |     False     | 94.1 / 90.7 | 93.9 / 85.7 | 94.1 / 90.7 |
+| roberta-large-conll2003    |     False     |    - / -    |    - / -    |    - / -    |
 
 _Table 2. Named entity recognition performance of the models. The scores
 represent the validation/test scores._

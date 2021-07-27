@@ -74,17 +74,19 @@ def add_encodings(example):
         is_split_into_words=True,
     )
     # prepare the labels
-
-    # get the first label tag
     curr_idx = 0
     labels = [example["ner_tags"][0]]
     tokens = model.tokenizer.tokenize(example["tokens"], is_split_into_words=True)
-
-    if "roberta" in model.tokenizer.name_or_path:
+    if "xlm-roberta" in model.tokenizer.name_or_path:
+        # handle xlm-roberta based models
         for token in tokens[1:]:
             curr_idx += 1 if token[0] == "▁" else 0
             labels += [example["ner_tags"][curr_idx]]
-
+    elif "roberta" in model.tokenizer.name_or_path:
+        # handle roberta based models
+        for token in tokens[1:]:
+            curr_idx += 1 if token[0] == "Ġ" else 0
+            labels += [example["ner_tags"][curr_idx]]
     elif "bert" in model.tokenizer.name_or_path:
         # ! TODO: prepare this impossible conditioning for the bert tokenizer
         # ! This is impossible since the tokens are split based on a million
