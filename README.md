@@ -1,7 +1,7 @@
 # 📜 Named Entity Recognition
 
 This repository contains the code to build a named entity recognition model
-using 🤗 huggingface, pytorch, pytorch lightning.
+using 🤗 huggingface, pytorch, and pytorch lightning.
 
 ## ☑️ Requirements
 
@@ -109,7 +109,7 @@ recognition. The paper introducing the dataset is:
 ```
 
 **NOTE:** To train a NER model using a different dataset, one must
-first check its structure and change the `./scripts/train.py` file accordingly.
+first check its structure and change the [./scripts/train.py][train] file accordingly.
 
 ### Training the Model
 
@@ -195,6 +195,7 @@ The work is supported by the following EU Horizon 2020 projects:
 [pytorch]: https://pytorch.org/
 [xlm-roberta]: https://huggingface.co/transformers/model_doc/xlmroberta.html
 [conll2003]: https://huggingface.co/datasets/conll2003
+[train]: ./scripts/train.py
 [inference]: ./scripts/inference.py
 [ailab]: http://ailab.ijs.si/
 [ijs]: https://www.ijs.si/
