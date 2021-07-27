@@ -1,7 +1,7 @@
 # 📜 Named Entity Recognition
 
 This repository contains the code to build a named entity recognition model
-using 🤗 huggingface, pytorch, pytorch lightning.
+using 🤗 huggingface, pytorch, and pytorch lightning.
 
 ## ☑️ Requirements
 
